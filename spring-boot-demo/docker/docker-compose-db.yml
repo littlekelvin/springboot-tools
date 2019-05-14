@@ -1,0 +1,15 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=Password1
+      - MYSQL_DATABASE=kelvin
+      - MYSQL_USER=kelvin
+      - MYSQL_PASSWORD=kelvin
+    ports:
+      - "3306:3306"
+    volumes:
+      - './volumes/mysql/data:/var/lib/mysql'

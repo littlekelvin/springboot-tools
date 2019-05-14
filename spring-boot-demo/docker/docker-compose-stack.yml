@@ -1,0 +1,40 @@
+version: '3'
+services:
+  springweb:
+    image: emp-webapp2:v1
+    deploy:
+      replicas: 5
+      restart_policy:
+        condition: on-failure
+    environment:
+      - MYSQL_USERNAME=kelvin
+      - MYSQL_PASSWORD=kelvin
+      - MYSQL_URL=jdbc:mysql://mysqldb:3306/kelvin?useUnicode=true&characterEncoding=utf8
+    ports:
+      - "8090:8090"
+    depends_on:
+      - mysqldb
+    networks:
+      - webnet
+
+  mysqldb:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=Password1
+      - MYSQL_DATABASE=kelvin
+      - MYSQL_USER=kelvin
+      - MYSQL_PASSWORD=kelvin
+    ports:
+      - "3306:3306"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - webnet
+
+volumes:
+  mysql_data:
+networks:
+  webnet:

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Hello</title>
+</head>
+<body>
+<h1  th:text="${message}">Hello World</h1>
+<p th:text="${username}">hi</p>
+<p><span th:text="|welcome to our application, ${username}|"></span></p>
+<a th:if="${flag == 'yes'}"  th:href="@{http://favorites.ren/}"> home </a>
+<br/>
+<a th:unless="${flag != 'no'}" th:href="@{http://www.ityouknow.com/}" >ityouknow</a>
+<h1>for 循环</h1>
+<table>
+    <tr  th:each="user,iterStat : ${users}">
+        <td th:text="${user.name}">neo</td>
+        <td th:text="${user.age}">6</td>
+        <td th:text="${user.password}">213</td>
+        <td th:text="${iterStat.index}">index</td>
+    </tr>
+</table>
+<input th:value="${name}"/>
+<br/>
+<input th:value="${age gt 30 ? '中年':'年轻'}"/>
+<h1>switch</h1>
+<div >
+    <div th:switch="${sex}">
+        <p th:case="'woman'">她是一个姑娘...</p>
+        <p th:case="'man'">这是一个爷们!</p>
+        <!-- *: case的默认的选项 -->
+        <p th:case="*">未知性别的一个家伙。</p>
+    </div>
+</div>
+<h1>URL</h1>
+<a th:href="@{http://www.ityouknow.com/{type}(type=${type})}">link</a>
+<br />
+<!--<div th:style="|background:url(@{${img}});|">-->
+    <!--<br/><br/><br/>-->
+<!--</div>-->
+<img  th:src="@{${img}}"/>
+</body>
+</html>

@@ -1,0 +1,1 @@
+echo f | xcopy /Y .\target\spring-boot-demo-1.0.0.jar .\docker\spring-boot-demo-1.0.0.jar

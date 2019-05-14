@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" />
+    <link rel="stylesheet" href="../static/css/bootstrap-theme.css" />
+    <script src="../static/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8"></meta>
+    <title>Hello</title>
+</head>
+<body>
+    <h2>Employee List</h2>
+    <div style="margin: 50px 50px">
+        <table class="table table-bordered">
+            <th>Index</th>
+            <th>EmployeeName</th>
+            <th>PhoneNumber</th>
+            <th>CardNumber</th>
+            <th>Age</th>
+            <th>Salary</th>
+            <th>EmployDate</th>
+            <th>Company</th>
+            <th>CreatedBy</th>
+            <th>CreateDate</th>
+            <th>LastUpdateBy</th>
+            <th>LastUpdateDate</th>
+            <tr  th:each="emp,iterStat : ${emps}">
+                <td th:text="${iterStat.index}">index</td>
+                <td th:text="${emp.eName}">neo</td>
+                <td th:text="${emp.phoneNumber}">10086</td>
+                <td th:text="${emp.cardNumber}">440998</td>
+                <td th:text="${emp.age}">23</td>
+                <td th:text="${emp.salary}">23.3</td>
+                <td th:text="${emp.empDate}">2019</td>
+                <td th:text="${emp.company.cName}">2019</td>
+                <td th:text="${emp.createBy}">kelvin</td>
+                <td th:text="${emp.createDate}">2019</td>
+                <td th:text="${emp.lastUpdateBy}">kelvin</td>
+                <td th:text="${emp.lastUpdateDate}">2019</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+version: '3'
+services:
+  springweb:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: emp-webapp:v1
+    container_name: emp-webapp-demo
+    environment:
+      - MYSQL_USERNAME=kelvin
+      - MYSQL_PASSWORD=kelvin
+      - MYSQL_URL=jdbc:mysql://mysqldb:3306/kelvin?useUnicode=true&characterEncoding=utf8
+    ports:
+      - "8090:8090"
+    depends_on:
+      - mysqldb
+
+  mysqldb:
+    image: mysql:5.7
+    container_name: web-mysql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=Password1
+      - MYSQL_DATABASE=kelvin
+      - MYSQL_USER=kelvin
+      - MYSQL_PASSWORD=kelvin
+    ports:
+      - "3306:3306"
+    volumes:
+      - './volumes/mysql/data:/var/lib/mysql'
